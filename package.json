@@ -1,7 +1,6 @@
 {
   "name": "end-to-end-youtube",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "jest --watchAll"
@@ -11,6 +10,11 @@
   "license": "ISC",
   "devDependencies": {
     "jest": "^29.3.1",
+    "jest-puppeteer": "^9.0.0",
     "puppeteer": "^19.5.1"
-  }
+  },
+  "directories": {
+    "test": "tests"
+  },
+  "description": ""
 }
