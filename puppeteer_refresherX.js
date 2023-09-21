@@ -5,7 +5,7 @@ const puppeteer = require("puppeteer");
 (
     async()=>{
        const browser = await puppeteer.launch({
-        headless: true
+        headless: false
        });
 
        const page = await browser.newPage();
@@ -14,7 +14,22 @@ const puppeteer = require("puppeteer");
 
        await page.goto('https://uat.zoftwarehub.com')
 
-       console.log("done with automation")
+       console.log("Open the Zoftware UAT website")
+
+
+
+       //Enter a question into the chatbot
+
+       const botSearchField = document.querySelector('textarea[class="bot-input ng-untouched ng-pristine ng-valid"]');
+
+       await page.waitForBotSearchField(botSearchField)
+
+       await page.click(botSearchField, {clickCount: 1})
+       console.log("click on the bot search field")
+
+       await page.type(botSearchField, "Recommend an app that will help me lose weight in 30 seconds");
+       console.log("enter a question into the bot search field")
+
     } 
 )()
 
