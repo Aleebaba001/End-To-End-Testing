@@ -8,8 +8,8 @@ const puppeteer = require("puppeteer");
         headless: false
        });
 
-       await page.setDefaultNavigationTimeout(100000);
        const page = await browser.newPage();
+       await page.setDefaultNavigationTimeout(100000);
 
        //Go to the new page
 
@@ -24,16 +24,16 @@ const puppeteer = require("puppeteer");
 
        const botSearchField = 'textarea[class="bot-input ng-untouched ng-pristine ng-valid"]';
 
-       await page.setDefaultNavigationTimeout(10000);
-       await page.waitForBotSearchField(botSearchField)
+    
+       await page.waitForSelector(botSearchField, { timeout: 10000 });
+       await page.click(botSearchField, { clickCount: 1 });
+       console.log("Click on the bot search field");
 
-       await page.setDefaultNavigationTimeout(10000);
-       await page.click(botSearchField, {clickCount: 1})
+       await page.click(botSearchField, {clickCount: 1}, { timeout: 10000 });
        console.log("click on the bot search field")
 
-       await page.setDefaultNavigationTimeout(10000);
        await page.type(botSearchField, "Recommend an app that will help me lose weight in 30 seconds");
-       console.log("enter a question into the bot search field")
+       console.log("enter a question into the bot search field", { timeout: 10000 });
 
 
     } 
