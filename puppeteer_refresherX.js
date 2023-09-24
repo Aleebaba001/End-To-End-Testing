@@ -5,7 +5,8 @@ const puppeteer = require("puppeteer");
 (
     async()=>{
        const browser = await puppeteer.launch({
-        headless: false
+        headless: false,
+        timeout: 60000,
        });
 
        //Create a new page
@@ -37,10 +38,17 @@ const puppeteer = require("puppeteer");
 
 
        //Go to the new page
-       await page.setDefaultNavigationTimeout(50000);
+       await page.setDefaultNavigationTimeout(60000);
        await page.goto('https://uat.zoftwarehub.com');
-       await page.waitFor(3000); // Pause for 3 seconds
-       console.log("Open the Zoftware UAT website")
+       console.log("Open the Zoftware UAT website");
+       await delay(3000); // Pause for 3 seconds
+
+       
+       
+       // Define a delay function
+       function delay(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+       }
 
 
 
@@ -48,14 +56,14 @@ const puppeteer = require("puppeteer");
        const chatBotField = '[class="bot-input ng-untouched ng-pristine ng-valid"]';
        await page.waitForSelector(chatBotField, { timeout: 10000 });
        await page.click(chatBotField, { clickCount: 1 });
-       await page.waitFor(3500); // Pause for 3.5 seconds
+       await delay(3500); // Pause for 3.5 seconds
        console.log("Click on the bot search field");
 
        
        
        //Enter text into the chatbot
        await page.type(chatBotField, "Recommend an app that will help me lose weight in 30 seconds", { timeout: 5000 });
-       await page.waitFor(3500); // Pause for 3.5 seconds
+       await delay(3500); // Pause for 3.5 seconds
        console.log("Enter a question into the bot search field");
 
        
@@ -64,7 +72,7 @@ const puppeteer = require("puppeteer");
        const sendButton = '[alt="Send Icon"]';
        await page.waitForSelector(sendButton, { timeout: 3000 });
        await page.click(sendButton, { clickCount: 1 });
-       await page.waitFor(3500); // Pause for 3.5 seconds
+       await delay(3500); // Pause for 3.5 seconds
        console.log("Click on the send button");
 
     
@@ -72,14 +80,14 @@ const puppeteer = require("puppeteer");
        //Click on the chatbot field again
        await page.waitForSelector(chatBotField, {timeout: 10000 });
        await page.click(chatBotField, { clickCount: 1});
-       await page.waitFor(3500); // Pause for 3.5 seconds
+       await delay(3500); // Pause for 3.5 seconds
        console.log("Click on the chatbot field again");
 
 
 
        //Enter text into the chatbot field
        await page.type(chatBotField, "Recommend an app that will help me fall asleep", { timeout: 10000 });
-       await page.waitFor(3500); // Pause for 3.5 seconds
+       await delay(3500); // Pause for 3.5 seconds
        console.log("Enter a question into the chatbot field");
 
 
@@ -87,7 +95,7 @@ const puppeteer = require("puppeteer");
        //Click on the send button again
        await page.waitForSelector(sendButton, { timeout: 5000 });
        await page.click(sendButton, { clickCount: 1 });
-       await page.waitFor(3500); // Pause for 3.5 seconds
+       await delay(3500); // Pause for 3.5 seconds
        console.log("Click on the send button again");
 
 
@@ -96,7 +104,7 @@ const puppeteer = require("puppeteer");
        const zoftLogo = '[class="zoftware-logo"]';
        await page.waitForSelector(zoftLogo, { timeout: 10000 });
        await page.click(zoftLogo, { clickCount: 1 });
-       await page.waitFor(3500); // Pause for 3.5 seconds
+       await delay(3500); // Pause for 3.5 seconds
        console.log("Go back to the zoftware homepage");
 
 
@@ -105,14 +113,14 @@ const puppeteer = require("puppeteer");
        const searchField = '[id="txtSearch"]';
        await page.waitForSelector(searchField, { timeout: 10000 });
        await page.click(searchField, { clickCount: 1 });
-       await page.waitFor(3500); // Pause for 3.5 seconds
+       await delay(3500); // Pause for 3.5 seconds
        console.log("Select the search field");
 
 
 
        //Enter the category name into the search field
        await page.type(searchField, "Design", { timeout: 10000 });
-       await page.waitFor(3500); // Pause for 3.5 seconds
+       await delay(3500); // Pause for 3.5 seconds
        console.log("Enter the category name into the search field");
 
 
@@ -121,7 +129,7 @@ const puppeteer = require("puppeteer");
        const graphicDS = '#sliding-panel-inner > div > div:nth-child(4) > ul > li:nth-child(1) > a';
        await page.waitForSelector(graphicDS, { timeout: 10000 });
        await page.click(graphicDS, { clickCount: 1 });
-       await page.waitFor(3500); // Pause for 3.5 seconds
+       await delay(3500); // Pause for 3.5 seconds
        console.log("Select your preferred category from the list of suggestions");
 
 
